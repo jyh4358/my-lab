@@ -1,1 +1,5 @@
 rootProject.name = 'multi-module'
+include 'multi-core'
+include 'multi-springs'
+include 'multi-querydsl'
+

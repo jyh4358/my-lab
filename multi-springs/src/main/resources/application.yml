@@ -1,0 +1,22 @@
+
+test-property:
+  value1: true
+  value2: 1234
+
+
+aws:
+  s3:
+    access-key: access-key value
+    secret-key: secret-key value
+    bucket: bucket value
+  region:
+    region-static: region-static value
+
+s3:
+  access-key: access-key value
+  secret-key: secret-key value
+  bucket:
+    stage:
+      - stage-bucket value 1
+      - stage-bucket value 2
+    production: production-bucket value

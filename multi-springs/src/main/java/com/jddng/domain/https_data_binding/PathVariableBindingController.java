@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/path-variable/members")
+@RequestMapping(value = "/https-data-binding/path-variable/members")
 public class PathVariableBindingController {
 
   /**

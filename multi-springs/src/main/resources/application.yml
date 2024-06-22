@@ -1,4 +1,5 @@
 
+### @ConfigurationProperties 테스트 값
 test-property:
   value1: true
   value2: 1234
@@ -20,3 +21,18 @@ s3:
       - stage-bucket value 1
       - stage-bucket value 2
     production: production-bucket value
+
+#############################
+
+
+### Open API Swagger 설정 값
+springdoc:
+  swagger-ui:
+    path: /custom/swagger-ui      # Swagger 기본 경로 설정
+    tags-sorter: alpha            # alpha: 알파벳 순 태그 정렬, alpha-reverse: 알파벳 역순, original: 태그를 정의한 순서
+    operations-sorter: method     # alpha: 알파벳 순 메서드 정렬, method: HTTP Method 순 정렬
+                                  # alpha-reverse, method-reverse
+  api-docs:
+    path: /custom/api-docs        # docs 기본 경로 설정
+
+########################

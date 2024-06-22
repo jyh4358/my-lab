@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/query-parameter")
+@RequestMapping(value = "/https-data-binding/query-parameter")
 public class QueryParameterBindingController {
 
   /**

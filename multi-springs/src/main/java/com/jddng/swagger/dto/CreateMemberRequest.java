@@ -1,6 +1,6 @@
-package com.jddng.domain.swagger.dto;
+package com.jddng.swagger.dto;
 
-import com.jddng.domain.swagger.enum_type.MemberType;
+import com.jddng.swagger.enum_type.MemberType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

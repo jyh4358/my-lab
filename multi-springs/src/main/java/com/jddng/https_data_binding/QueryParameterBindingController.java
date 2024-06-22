@@ -1,6 +1,6 @@
-package com.jddng.domain.https_data_binding;
+package com.jddng.https_data_binding;
 
-import com.jddng.domain.https_data_binding.dto.MemberDto;
+import com.jddng.https_data_binding.dto.MemberDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;

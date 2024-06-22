@@ -1,4 +1,4 @@
-package com.jddng.domain.swagger.config;
+package com.jddng.swagger.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

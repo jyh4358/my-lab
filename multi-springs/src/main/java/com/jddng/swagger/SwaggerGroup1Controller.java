@@ -1,8 +1,8 @@
-package com.jddng.domain.swagger;
+package com.jddng.swagger;
 
 
-import com.jddng.domain.swagger.dto.CreateMemberRequest;
-import com.jddng.domain.swagger.dto.SearchMember;
+import com.jddng.swagger.dto.CreateMemberRequest;
+import com.jddng.swagger.dto.SearchMember;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

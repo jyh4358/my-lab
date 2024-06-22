@@ -1,4 +1,4 @@
-package com.jddng.domain.configuration_properties.config;
+package com.jddng.configuration_properties.config;
 
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

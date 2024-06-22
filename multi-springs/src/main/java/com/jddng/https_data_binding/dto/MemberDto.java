@@ -1,4 +1,4 @@
-package com.jddng.domain.https_data_binding.dto;
+package com.jddng.https_data_binding.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

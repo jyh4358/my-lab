@@ -1,4 +1,4 @@
-package com.jddng.domain.configuration_properties.config.properties;
+package com.jddng.configuration_properties.config.properties;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

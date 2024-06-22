@@ -1,4 +1,4 @@
-package com.jddng.domain.swagger.enum_type;
+package com.jddng.swagger.enum_type;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

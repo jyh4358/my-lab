@@ -1,4 +1,4 @@
-package com.jddng.domain.https_data_binding;
+package com.jddng.https_data_binding;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

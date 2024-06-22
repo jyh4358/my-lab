@@ -1,11 +1,11 @@
-package com.jddng.domain.configuration_properties;
+package com.jddng.configuration_properties;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.jddng.SpringsApplication;
-import com.jddng.domain.configuration_properties.config.properties.AWSProperty;
-import com.jddng.domain.configuration_properties.config.properties.S3InnerProperty;
-import com.jddng.domain.configuration_properties.config.properties.S3Property;
+import com.jddng.configuration_properties.config.properties.AWSProperty;
+import com.jddng.configuration_properties.config.properties.S3InnerProperty;
+import com.jddng.configuration_properties.config.properties.S3Property;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

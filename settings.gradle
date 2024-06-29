@@ -3,4 +3,5 @@ include 'multi-core'
 include 'multi-springs'
 include 'multi-querydsl'
 include 'multi-jpa'
+include 'multi-coding-practice'
 

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/1 # 데이터베이스 URL#
-    username: 1 # 데이터베이스 사용자 이름#
-    password: 1 # 데이터베이스 비밀번호#
+    url: jdbc:mysql://localhost:3306/my-laboratory # 데이터베이스 URL#
+    username: mylaboratory # 데이터베이스 사용자 이름#
+    password: 12341234 # 데이터베이스 비밀번호#
     driver-class-name: com.mysql.cj.jdbc.Driver # 데이터베이스 드라이버 클래스 이름#
 
   jpa:
@@ -37,11 +37,25 @@ spring:
         order_updates: true # 업데이트 명령 정렬 여부
         generate_statistics: false # Hibernate 통계 생성 여부
 
-
+### Logging 관련 설정 값
 logging:
   level:
-    org.hibernate.SQL: TRACE
-#    org.hibernate.orm.jdbc.bind: TRACE
+    root: INFO  # 전체 애플리케이션의 기본 로그 레벨을 INFO로 설정
+#    org.springframework.web: DEBUG # Spring 웹 관련 로그 레벨을 DEBUG로 설정
+#    com.example: TRACE # com.example 패키지의 로그 레벨을 TRACE로 설정
+    org.hibernate.SQL: DEBUG # Hibernate가 실행하는 SQL 쿼리를 로깅
+    org.hibernate.orm.jdbc.bind: TRACE # SQL 쿼리의 바인딩 변수 값을 로깅
+  pattern:
+    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n" # 콘솔 로그 출력 형식 설정
+    file: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n" # 파일 로그 출력 형식 설정
   file:
-    name: test.log
-    path: /log
+    name: log/multi-jpa.log # 로그 파일의 절대 경로와 이름을 설정
+
+  console:
+    charset: UTF-8
+    pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  logback:
+    rollingpolicy:
+      max-history: 7 # 보관할 최대 로그 파일 수를 설정
+      total-size-cap: 10MB  # 전체 로그 파일 크기 제한을 설정
+#      clean-history-on-start: true # 애플리케이션 시작 시 이전 로그 파일을 정리할지 여부를 설정

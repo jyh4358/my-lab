@@ -41,10 +41,10 @@ springdoc:
 
 ### Logging 관련 설정 값
 logging:
-  level:
-    root: INFO
-    org.springframework.web: DEBUG
-    com.example: TRACE
+#  level:
+#    root: INFO
+#    org.springframework.web: DEBUG
+#    com.example: TRACE
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

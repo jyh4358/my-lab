@@ -109,5 +109,34 @@ public class Level2Solution {
     return answer;
   }
 
+  /**
+   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/133502">햄버거 만들기</a>
+   */
+  private static final int[] RECIPE = {1, 2, 3, 1};
+  private static final int RECIPE_LENGTH = RECIPE.length;
+  public int 햄버거_만들기(int[] ingredient) {
+    int count = 0;
+    int n = ingredient.length;
+    int[] stack = new int[n];
+    int stackIndex = 0;
 
+    for (int i = 0; i < n; i++) {
+      stack[stackIndex++] = ingredient[i];
+
+      if (stackIndex >= RECIPE_LENGTH && isRecipe(stack, stackIndex)) {
+        stackIndex -= RECIPE_LENGTH;
+        count++;
+      }
+    }
+
+    return count;
+  }
+  private boolean isRecipe(int[] stack, int stackIndex) {
+    for (int i = 0; i < RECIPE_LENGTH; i++) {
+      if (stack[stackIndex - RECIPE_LENGTH + i] != RECIPE[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

@@ -21,24 +21,24 @@ spring:
       - core
   jpa:
     hibernate:
-      ddl-auto: update # 스키마 자동 생성 옵션 (none, validate, update, create, create-drop)#
-#    show-sql: true # 실행되는 SQL을 출력할지 여부#
+      ddl-auto: validate # 스키마 자동 생성 옵션 (none, validate, update, create, create-drop)#
+    #    show-sql: true # 실행되는 SQL을 출력할지 여부#
     open-in-view: false # Open EntityManager in View 패턴 사용 여부#
 
     properties:
       hibernate:
-#        format_sql: true # SQL 포맷팅 여부#
+        #        format_sql: true # SQL 포맷팅 여부#
         dialect: org.hibernate.dialect.MySQLDialect # Hibernate Dialect 설정#
-#        show_sql: true # 실행되는 SQL을 출력할지 여부#
-#        use_sql_comments: true # SQL에 주석 추가 여부#
-#        cache.use_second_level_cache: true # 2차 캐시 사용 여부
-#        cache.use_query_cache: true # 쿼리 캐시 사용 여부
-#        cache.region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory # 캐시 지역 팩토리 클래스
+        #        show_sql: true # 실행되는 SQL을 출력할지 여부#
+        #        use_sql_comments: true # SQL에 주석 추가 여부#
+        #        cache.use_second_level_cache: true # 2차 캐시 사용 여부
+        #        cache.use_query_cache: true # 쿼리 캐시 사용 여부
+        #        cache.region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory # 캐시 지역 팩토리 클래스
 
         # Naming 전략 설정
         naming:
           physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # 물리적 네이밍 전략#
-#          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl # 암묵적 네이밍 전략#
+        #          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl # 암묵적 네이밍 전략#
         query:
           plan_cache_max_size: 1024
           plan_parameter_metadata_max_size: 64
@@ -55,15 +55,15 @@ spring:
 logging:
   level:
     root: INFO  # 전체 애플리케이션의 기본 로그 레벨을 INFO로 설정
-#    org.springframework.web: DEBUG # Spring 웹 관련 로그 레벨을 DEBUG로 설정
-#    com.example: TRACE # com.example 패키지의 로그 레벨을 TRACE로 설정
+    #    org.springframework.web: DEBUG # Spring 웹 관련 로그 레벨을 DEBUG로 설정
+    #    com.example: TRACE # com.example 패키지의 로그 레벨을 TRACE로 설정
     org.hibernate.SQL: DEBUG # Hibernate가 실행하는 SQL 쿼리를 로깅
-#    org.hibernate.orm.jdbc.bind: TRACE # SQL 쿼리의 바인딩 변수 값을 로깅
+    org.hibernate.orm.jdbc.bind: TRACE # SQL 쿼리의 바인딩 변수 값을 로깅
   pattern:
     console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n" # 콘솔 로그 출력 형식 설정
     file: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n" # 파일 로그 출력 형식 설정
   file:
-    name: log/multi-jpa.log # 로그 파일의 절대 경로와 이름을 설정
+    name: log/multi-querydsl.log # 로그 파일의 절대 경로와 이름을 설정
 
   console:
     charset: UTF-8

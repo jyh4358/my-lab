@@ -1,13 +1,9 @@
-package com.jddng.domain.wish;
+package com.jddng.domain.tag;
 
 import com.jddng.domain.board.Board;
-import com.jddng.domain.member.Member;
-import com.jddng.domain.wish.enum_type.WishStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +16,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -28,35 +23,25 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Wish {
+public class Tag {
 
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long wishId;
+  private Long tagId;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "board_id", nullable = false)
   private Board board;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "member_id", nullable = false)
-  private Member member;
-
-
-  @Enumerated(EnumType.STRING)
-//  @Column(columnDefinition = "char(50) default 'WISH' comment '좋아요 상태", nullable = false)
-  private WishStatus wishStatus;
-
-  @UpdateTimestamp
-  @Column(nullable = false, columnDefinition = "datetime comment '수정일'")
-  private LocalDateTime updateAt;
+  @Column(columnDefinition = "varchar(100) comment '태그명'", nullable = false)
+  private String tagName;
 
   @Column(nullable = false, updatable = false, columnDefinition = "datetime comment '등록일'")
   @CreationTimestamp
   private LocalDateTime createAt;
 
   @Builder
-  public Wish(Board board, WishStatus wishStatus) {
+  public Tag(Board board, String tagName) {
     this.board = board;
-    this.wishStatus = wishStatus;
+    this.tagName = tagName;
   }
 }

@@ -21,7 +21,7 @@ spring:
       - core
   jpa:
     hibernate:
-      ddl-auto: validate # 스키마 자동 생성 옵션 (none, validate, update, create, create-drop)#
+      ddl-auto: create # 스키마 자동 생성 옵션 (none, validate, update, create, create-drop)#
     #    show-sql: true # 실행되는 SQL을 출력할지 여부#
     open-in-view: false # Open EntityManager in View 패턴 사용 여부#
 

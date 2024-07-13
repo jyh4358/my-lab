@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,4 +39,9 @@ public class Member {
   @CreationTimestamp
   private LocalDateTime createAt;
 
+  @Builder
+  public Member(String nickName, int age) {
+    this.nickName = nickName;
+    this.age = age;
+  }
 }

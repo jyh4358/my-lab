@@ -1,6 +1,7 @@
 package com.jddng.domain.board;
 
 import com.jddng.domain.category.Category;
+import com.jddng.domain.member.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -33,6 +34,10 @@ public class Board {
   @JoinColumn(name = "category_id", nullable = false)
   private Category category;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "member_id", nullable = false)
+  private Member member;
+
   @Column(columnDefinition = "varchar(500) comment '제목'", nullable = false)
   private String title;
 
@@ -48,8 +53,10 @@ public class Board {
   private LocalDateTime createAt;
 
   @Builder
-  public Board(Category category, String title, String content) {
+
+  public Board(Category category, Member member, String title, String content) {
     this.category = category;
+    this.member = member;
     this.title = title;
     this.content = content;
   }

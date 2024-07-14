@@ -1,4 +1,4 @@
-package com.jddng.domain.board.repository;
+package com.jddng.domain.querydsl_query_ex;
 
 import static com.jddng.domain.board.QBoard.board;
 import static com.jddng.domain.category.QCategory.category;
@@ -6,13 +6,10 @@ import static com.jddng.domain.tag.QTag.tag;
 import static com.jddng.domain.wish.QWish.wish;
 import static com.querydsl.jpa.JPAExpressions.select;
 
-import com.jddng.domain.board.Board;
 import com.jddng.domain.board.dto.BoardDto;
-import com.jddng.domain.tag.QTag;
 import com.jddng.domain.wish.enum_type.WishStatus;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
@@ -22,48 +19,9 @@ import org.springframework.util.ObjectUtils;
 
 @Repository
 @RequiredArgsConstructor
-public class QueryBoardRepository {
+public class MysqlFunctionRepository {
 
   private final JPAQueryFactory queryFactory;
-
-  /**
-   * <pre>
-   *   스칼라 쿼리 사용방법
-   *   com.querydsl.core.types.dsl.Expressions 사용
-   * </pre>
-   */
-  public List<BoardDto> 스칼라_쿼리() {
-    return queryFactory.select(Projections.fields(BoardDto.class,
-            board.boardId,
-            board.title,
-            board.content,
-            category.categoryId,
-            category.categoryName,
-            Expressions.as(
-                select(wish.count())
-                    .from(wish)
-                    .where(
-                        wish.board.eq(board),
-                        wish.wishStatus.eq(WishStatus.WISH)
-                    )
-                    .isNotNull(), "likeCount"
-            ),
-            Expressions.as(
-                select()
-                    .from(wish)
-                    .where(
-                        wish.board.eq(board),
-                        wish.wishStatus.eq(WishStatus.WISH),
-                        likeYnEq(1L)
-                    )
-                    .isNotNull(), "likeYn"
-            ),
-            board.createAt
-        ))
-        .from(board)
-        .innerJoin(board.category, category)
-        .fetch();
-  }
 
   /**
    * <pre>
@@ -117,36 +75,58 @@ public class QueryBoardRepository {
         .fetch();
   }
 
-  /**
-   * <pre>
-   *   특정 조건으로 순서 정렬을 하고 싶을 때
-   *   CaseBuilder를 이용하여 정렬을 할 수 있다.
-   *   아래 예시는 이렇게 사용할 수 있다라는 것을 보여주는 코드로
-   *   별 의미없는 코드이다.
-   * </pre>
-   * @return
-   */
-  public List<Board> caseBuilder를_이용한_순서_정렬() {
-    return queryFactory
-        .select(board)
+  public List<BoardDto> mySql_내장함수_사용방법_rand() {
+    return queryFactory.select(Projections.fields(BoardDto.class,
+            board.boardId,
+            board.title,
+            board.content,
+            category.categoryId,
+            category.categoryName,
+            Expressions.as(
+                select(wish.count())
+                    .from(wish)
+                    .where(
+                        wish.board.eq(board),
+                        wish.wishStatus.eq(WishStatus.WISH)
+                    ), "likeCount"
+            ),
+            Expressions.as(
+                select(wish)
+                    .from(wish)
+                    .where(
+                        wish.board.eq(board),
+                        wish.wishStatus.eq(WishStatus.WISH),
+                        likeYnEq(1L)
+                    )
+                    .isNotNull(), "likeYn"
+            ),
+            Expressions.as(
+                select(Expressions.stringTemplate("group_concat({0})", tag.tagName))
+                    .from(tag)
+                    .where(
+                        tag.board.eq(board)
+                    ), "tagStr"
+            ),
+            board.createAt
+        ))
         .from(board)
         .innerJoin(board.category, category)
-        .orderBy(
-            new CaseBuilder()
-                .when(board.title.contains("첫번쨰"))
-                .then(1)
-                .when(board.title.contains("두번쨰"))
-                .then(2)
-                .otherwise(3)
-                .asc()
-        )
+        .orderBy(Expressions.numberTemplate(Double.class, "function('rand')").asc())
         .fetch();
   }
 
+  public List<BoardDto> mySql_내장함수_사용방법_substring() {
+    return queryFactory.select(Projections.fields(BoardDto.class,
+            Expressions.stringTemplate("function('substring', {0}, {1}, {2})", board.title, 1, 3).as("title")
 
-
-    private BooleanExpression likeYnEq(Long memberId) {
-    return !ObjectUtils.isEmpty(memberId) ? wish.member.memberId.eq(memberId) : null;
+        ))
+        .from(board)
+        .innerJoin(board.category, category)
+        .orderBy(Expressions.numberTemplate(Double.class, "function('rand')").asc())
+        .fetch();
   }
 
+  private BooleanExpression likeYnEq(Long memberId) {
+    return !ObjectUtils.isEmpty(memberId) ? wish.member.memberId.eq(memberId) : null;
+  }
 }

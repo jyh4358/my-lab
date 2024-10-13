@@ -7,6 +7,9 @@ plugins {
 
 bootJar.enabled = false // 빌드시 현재 모듈(multi-module)의 .jar를 생성하지 않습니다.
 
+repositories {
+    mavenCentral()
+}
 
 subprojects {
     group = 'com.jddng'

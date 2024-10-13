@@ -7,20 +7,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Test;
 
-class Level2SolutionTest {
+public class Level1Solution {
 
   /**
    * @see <a
    * href="https://school.programmers.co.kr/learn/courses/30/lessons/131128?language=java">숫자
    * 짝궁</a>
    */
-  @Test
-  void 숫자_짝궁() {
-    String X = "12321";
-    String Y = "42531";
-    String result = "";
+  public String 숫자_짝궁(String X, String Y) {
     Map<Integer, Integer> xMap = Arrays.stream(X.split(""))
         .map(Integer::parseInt)
         .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(e -> 1)))
@@ -55,22 +50,18 @@ class Level2SolutionTest {
     }
 
     if (sb.toString().startsWith("0")) {
-      result = "0";
+      return "0";
     }
     if (sb.toString().equals("")) {
-      result = "-1";
+      return "-1";
     }
-
-    result = sb.toString();
-
-    System.out.println("result = " + result);
+    return sb.toString();
   }
 
-  @Test
-  void 콜라_문제() {
-    int a = 2;
-    int b = 1;
-    int n = 20;
+  /**
+   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/132267">콜라 문제</a>
+   */
+  public int 콜라_문제(int a, int b, int n) {
     // a : 마트에 줘야하는 수
     // b : 마트가 주는 수
     // n : 내가 갖고있는 수
@@ -86,12 +77,13 @@ class Level2SolutionTest {
       currentCnt = quotient * b + remainder;
     }
 
-    System.out.println("givenCnt = " + givenCnt);
+    return givenCnt;
   }
 
-  @Test
-  void 옹알이_2() {
-    String[] babbling = new String[]{"ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"};
+  /**
+   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/133499">옹알이 (2)</a>
+   */
+  public int 옹알이_2(String[] babbling) {
     int answer = 0;
 
     for (int i = 0; i < babbling.length; i++) {
@@ -114,6 +106,65 @@ class Level2SolutionTest {
       }
     }
 
-    System.out.println("answer = " + answer);
+    return answer;
+  }
+
+  /**
+   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/133502">햄버거 만들기</a>
+   */
+  private static final int[] RECIPE = {1, 2, 3, 1};
+  private static final int RECIPE_LENGTH = RECIPE.length;
+  public int 햄버거_만들기(int[] ingredient) {
+    int count = 0;
+    int n = ingredient.length;
+    int[] stack = new int[n];
+    int stackIndex = 0;
+
+    for (int i = 0; i < n; i++) {
+      stack[stackIndex++] = ingredient[i];
+
+      if (stackIndex >= RECIPE_LENGTH && isRecipe(stack, stackIndex)) {
+        stackIndex -= RECIPE_LENGTH;
+        count++;
+      }
+    }
+
+    return count;
+  }
+  private boolean isRecipe(int[] stack, int stackIndex) {
+    for (int i = 0; i < RECIPE_LENGTH; i++) {
+      if (stack[stackIndex - RECIPE_LENGTH + i] != RECIPE[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/134240">푸드 파이트 대회</a>
+   */
+  public String 푸드_파이트_대회(int[] food) {
+    // 음식을 순서대로 담을 StringBuilder 선언
+    StringBuilder sb = new StringBuilder();
+
+    for (int i = 1; i < food.length; i++) {
+      // i번 음식을 2로 나눈 개수만큼 StringBuilder에 추가
+      int count = food[i] / 2;
+      sb.append(String.valueOf(i).repeat(count));
+    }
+
+    // StringBuilder에 추가된 음식에 0과 reverse된 문자열 더하기
+    String answer = sb + "0";
+    answer += sb.reverse();
+
+    return answer;
+  }
+
+  /**
+   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/135808">푸드 파이트 대회</a>
+   */
+  public int 과일_장수(int k, int m, int[] score) {
+    int answer = 0;
+    return answer;
   }
 }

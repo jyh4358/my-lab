@@ -4,4 +4,5 @@ include 'multi-springs'
 include 'multi-querydsl'
 include 'multi-jpa'
 include 'multi-coding-practice'
+include 'multi-batch'
 

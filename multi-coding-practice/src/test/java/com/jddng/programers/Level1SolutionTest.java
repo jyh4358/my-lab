@@ -7,15 +7,20 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.Test;
 
-public class Level2Solution {
+class Level1SolutionTest {
 
   /**
    * @see <a
    * href="https://school.programmers.co.kr/learn/courses/30/lessons/131128?language=java">숫자
    * 짝궁</a>
    */
-  public String 숫자_짝궁(String X, String Y) {
+  @Test
+  void 숫자_짝궁() {
+    String X = "12321";
+    String Y = "42531";
+    String result = "";
     Map<Integer, Integer> xMap = Arrays.stream(X.split(""))
         .map(Integer::parseInt)
         .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(e -> 1)))
@@ -50,18 +55,22 @@ public class Level2Solution {
     }
 
     if (sb.toString().startsWith("0")) {
-      return "0";
+      result = "0";
     }
     if (sb.toString().equals("")) {
-      return "-1";
+      result = "-1";
     }
-    return sb.toString();
+
+    result = sb.toString();
+
+    System.out.println("result = " + result);
   }
 
-  /**
-   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/132267">콜라 문제</a>
-   */
-  public int 콜라_문제(int a, int b, int n) {
+  @Test
+  void 콜라_문제() {
+    int a = 2;
+    int b = 1;
+    int n = 20;
     // a : 마트에 줘야하는 수
     // b : 마트가 주는 수
     // n : 내가 갖고있는 수
@@ -77,13 +86,12 @@ public class Level2Solution {
       currentCnt = quotient * b + remainder;
     }
 
-    return givenCnt;
+    System.out.println("givenCnt = " + givenCnt);
   }
 
-  /**
-   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/133499">옹알이 (2)</a>
-   */
-  public int 옹알이_2(String[] babbling) {
+  @Test
+  void 옹알이_2() {
+    String[] babbling = new String[]{"ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"};
     int answer = 0;
 
     for (int i = 0; i < babbling.length; i++) {
@@ -106,37 +114,6 @@ public class Level2Solution {
       }
     }
 
-    return answer;
-  }
-
-  /**
-   * @see <a href="https://school.programmers.co.kr/learn/courses/30/lessons/133502">햄버거 만들기</a>
-   */
-  private static final int[] RECIPE = {1, 2, 3, 1};
-  private static final int RECIPE_LENGTH = RECIPE.length;
-  public int 햄버거_만들기(int[] ingredient) {
-    int count = 0;
-    int n = ingredient.length;
-    int[] stack = new int[n];
-    int stackIndex = 0;
-
-    for (int i = 0; i < n; i++) {
-      stack[stackIndex++] = ingredient[i];
-
-      if (stackIndex >= RECIPE_LENGTH && isRecipe(stack, stackIndex)) {
-        stackIndex -= RECIPE_LENGTH;
-        count++;
-      }
-    }
-
-    return count;
-  }
-  private boolean isRecipe(int[] stack, int stackIndex) {
-    for (int i = 0; i < RECIPE_LENGTH; i++) {
-      if (stack[stackIndex - RECIPE_LENGTH + i] != RECIPE[i]) {
-        return false;
-      }
-    }
-    return true;
+    System.out.println("answer = " + answer);
   }
 }

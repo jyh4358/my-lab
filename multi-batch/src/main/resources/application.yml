@@ -27,18 +27,18 @@ spring:
 
     properties:
       hibernate:
-#        format_sql: true # SQL 포맷팅 여부#
-        dialect: org.hibernate.dialect.MySQLDialect # Hibernate Dialect 설정#
-#        show_sql: true # 실행되는 SQL을 출력할지 여부#
-#        use_sql_comments: true # SQL에 주석 추가 여부#
+#        format_sql: true # SQL 포맷팅 여부
+        dialect: org.hibernate.dialect.MySQLDialect # Hibernate Dialect 설정
+#        show_sql: true # 실행되는 SQL을 출력할지 여부
+#        use_sql_comments: true # SQL에 주석 추가 여부
 #        cache.use_second_level_cache: true # 2차 캐시 사용 여부
 #        cache.use_query_cache: true # 쿼리 캐시 사용 여부
 #        cache.region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory # 캐시 지역 팩토리 클래스
 
         # Naming 전략 설정
         naming:
-          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # 물리적 네이밍 전략#
-#          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl # 암묵적 네이밍 전략#
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # 물리적 네이밍 전략
+#          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl # 암묵적 네이밍 전략
         query:
           plan_cache_max_size: 1024
           plan_parameter_metadata_max_size: 64
@@ -51,10 +51,14 @@ spring:
         order_updates: true # 업데이트 명령 정렬 여부
         generate_statistics: false # Hibernate 통계 생성 여부
 
-  # 배치 관려 ㄴ설정
+  # 배치 관련 설정
   batch:
+#    job:
+#      enabled: true
+#      name: ${job.name:NONE}
     jdbc:
       initialize-schema: always
+#      table-prefix: system_
 
 ### Logging 관련 설정 값
 logging:

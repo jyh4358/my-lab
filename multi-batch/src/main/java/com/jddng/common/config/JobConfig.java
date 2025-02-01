@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JobConfig {
 
-//  @Bean
+
   public Job job(JobRepository jobRepository, Step step1, Step step2) {
     return new JobBuilder(JobType.JOB1.getJob(), jobRepository)
         .start(step1)
